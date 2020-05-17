@@ -1,6 +1,5 @@
 package shortener
 
-
 import (
 	"errors"
 	errs "github.com/pkg/errors"

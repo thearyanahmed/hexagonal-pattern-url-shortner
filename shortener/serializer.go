@@ -1,4 +1,4 @@
-package shortner
+package shortener
 
 type RedirectSerializer interface {
 	Decode(intput []byte) (*Redirect, error)

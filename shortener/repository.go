@@ -1,4 +1,4 @@
-package shortner
+package shortener
 
 type RedirectRepository interface {
 	Find(code string) (*Redirect, error)
