@@ -7,7 +7,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/pkg/errors"
 
-	"github.com/thearyanahmed/url-shortner/shortner"
+	"github.com/thearyanahmed/url-shortener/shortener"
 )
 
 type Redirect struct{}
@@ -35,7 +35,7 @@ func newRedisClient(url string) (*redis.Client, error ) {
 	return client, nil
 }
 
-func newRedisRepository(url string) (shortner.RedirectRepository, error) {
+func newRedisRepository(url string) (shortener.RedirectRepository, error) {
 	repo := &redisRepository{}
 
 	client, err := newRedisClient(url)
@@ -51,8 +51,8 @@ func (r *redisRepository) generateKey(code string) string {
 	return fmt.Sprintf("redirect:%s", code)
 }
 
-func (r *redisRepository) Find(code string) (*shortner.Redirect, error) {
-	redirect := &shortner.Redirect{}
+func (r *redisRepository) Find(code string) (*shortener.Redirect, error) {
+	redirect := &shortener.Redirect{}
 
 	key := r.generateKey(code)
 	data, err := r.client.HGetAll(key).Result()
@@ -60,7 +60,7 @@ func (r *redisRepository) Find(code string) (*shortner.Redirect, error) {
 		return nil, errors.Wrap(err, "repository.Redirect.Find")
 	}
 	if len(data) == 0 {
-		return nil, errors.Wrap(shortner.RedirectNotFound, "repository.Redirect.Find")
+		return nil, errors.Wrap(shortener.RedirectNotFound, "repository.Redirect.Find")
 	}
 	createdAt, err := strconv.ParseInt(data["created_at"], 10, 64)
 	if err != nil {
@@ -72,7 +72,7 @@ func (r *redisRepository) Find(code string) (*shortner.Redirect, error) {
 	return redirect, nil
 }
 
-func (r *redisRepository) Store(redirect *shortner.Redirect) error {
+func (r *redisRepository) Store(redirect *shortener.Redirect) error {
 	key := r.generateKey(redirect.Code)
 	data := map[string]interface{}{
 		"code":       redirect.Code,

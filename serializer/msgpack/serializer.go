@@ -3,12 +3,12 @@ package msgpack
 import (
 	"github.com/vmihailenco/msgpack"
 	"github.com/pkg/errors"
-	"github.com/thearyanahmed/url-shortner/shortner"
+	"github.com/thearyanahmed/url-shortener/shortener"
 )
 
 type Redirect struct{}
 
-func (r *Redirect) Decode(input []byte) (* shortner.Redirect, error) {
+func (r *Redirect) Decode(input []byte) (* shortener.Redirect, error) {
 	redirect := &shortner.Redirect{}
 
 	if err := msgpack.Unmarshal(input,redirect); err != nil {

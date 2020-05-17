@@ -1,4 +1,4 @@
-module github.com/thearyanahmed/url-shortner
+module github.com/thearyanahmed/url-shortener
 
 go 1.14
 

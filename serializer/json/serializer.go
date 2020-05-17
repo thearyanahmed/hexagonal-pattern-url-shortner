@@ -3,13 +3,13 @@ package json
 import (
 	"encoding/json"
 	"github.com/pkg/errors"
-	"github.com/thearyanahmed/url-shortner/shortner"
+	"github.com/thearyanahmed/url-shortener/shortener"
 )
 
 type Redirect struct{}
 
-func (r *Redirect) Decode(input []byte) (* shortner.Redirect, error) {
-	redirect := &shortner.Redirect{}
+func (r *Redirect) Decode(input []byte) (* shortener.Redirect, error) {
+	redirect := &shortener.Redirect{}
 
 	if err := json.Unmarshal(input,redirect); err != nil {
 		return nil, errors.Wrap("serializer.Redirect.Decode")

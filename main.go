@@ -11,11 +11,11 @@ import (
 	"strconv"
 	"syscall"
 
-	h "github.com/thearyanahmed/url-shortner/api"
-	mr "github.com/thearyanahmed/url-shortner/repository/mongo"
-	rr "github.com/thearyanahmed/url-shortner/repository/redis"
+	h "github.com/thearyanahmed/url-shortener/api"
+	mr "github.com/thearyanahmed/url-shortener/repository/mongo"
+	rr "github.com/thearyanahmed/url-shortener/repository/redis"
 
-	"github.com/thearyanahmed/url-shortner/shortener"
+	"github.com/thearyanahmed/url-shortener/shortener"
 )
 
 func main() {

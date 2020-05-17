@@ -8,9 +8,9 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/pkg/errors"
 
-	"github.com/thearyanahmed/url-shortner/serializer/json"
-	"github.com/thearyanahmed/url-shortner/serializer/msgpack"
-	"github.com/thearyanahmed/url-shortner/shortener"
+	"github.com/thearyanahmed/url-shortener/serializer/json"
+	"github.com/thearyanahmed/url-shortener/serializer/msgpack"
+	"github.com/thearyanahmed/url-shortener/shortener"
 )
 
 type RedirectHandler interface {
@@ -19,10 +19,10 @@ type RedirectHandler interface {
 }
 
 type handler struct {
-	redirectService shortner.RedirectService
+	redirectService shortener.RedirectService
 }
 
-func NewHandler(handlerService shortner.RedirectSerializer) RedirectHandler {
+func NewHandler(handlerService shortener.RedirectSerializer) RedirectHandler {
 	return &handler{ redirectService: handlerService}
 }
 
@@ -51,7 +51,7 @@ func (h *handler) Get(w http.ResponseWriter, r http.Request) {
 	redirect, err := h.redirectService.Find(code)
 
 	if err != nil {
-		if errors.Cause(err) == shortner.RedirectNotFound {
+		if errors.Cause(err) == shortener.RedirectNotFound {
 			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
 			return
 		}
@@ -82,7 +82,7 @@ func (h *handler) Post (w http.ResponseWriter, r *http.Request) {
 	err = h.redirectService.Store(redirect)
 
 	if err != nil {
-		if errors.Cause(err) == shortner.InvalidRedirect {
+		if errors.Cause(err) == shortener.InvalidRedirect {
 			http.Error(w, http.StatusText(http.StatusBadRequest),http.StatusBadRequest)
 			return
 		}
