@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-var (	
+var (
 	RedirectNotFound = errors.New("Redirect not found.")
 	InvalidRedirect = errors.New("Invalid redirect.")
 )
@@ -26,7 +26,7 @@ type redirectService struct {
 // the repository is outside the inner hexagon
 func NewRedirectService(redirectRepository RedirectRepository) RedirectService {
 	return &redirectService{
-		redirectRepo,
+		redirectRepository,
 	}
 }
 
