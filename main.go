@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	_ "strconv"
+	 "strconv"
 	"syscall"
 
 	h "github.com/thearyanahmed/url-shortener/api"
-	_ "github.com/thearyanahmed/url-shortener/repository/mongo"
+	mr "github.com/thearyanahmed/url-shortener/repository/mongo"
 	rr "github.com/thearyanahmed/url-shortener/repository/redis"
 
 	"github.com/thearyanahmed/url-shortener/shortener"
@@ -67,15 +67,15 @@ func chooseRepo() shortener.RedirectRepository {
 		}
 		return repo
 	case "mongo":
-		return nil
-		// mongoURL := os.Getenv("MONGO_URL")
-		// mongodb := os.Getenv("MONGO_DB")
-		// mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT"))
-		// repo, err := mr.NewMongoRepository(mongoURL, mongodb, mongoTimeout)
-		// if err != nil {
-		// 	log.Fatal(err)
-		// }
-		// return repo
+		// return nil
+		mongoURL := os.Getenv("MONGO_URL")
+		mongodb := os.Getenv("MONGO_DB")
+		mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT"))
+		repo, err := mr.NewMongoRepository(mongoURL, mongodb, mongoTimeout)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return repo
 	}
 	return nil
 }
