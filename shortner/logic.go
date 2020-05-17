@@ -9,9 +9,9 @@ import (
 	"time"
 )
 
-var (
-	RedirectNotFound = error.New("Redirect not found.")
-	InvalidRedirect = error.New("Invalid redirect.")
+var (	
+	RedirectNotFound = errors.New("Redirect not found.")
+	InvalidRedirect = errors.New("Invalid redirect.")
 )
 
 // redirect service needs to have Find & Store method
@@ -42,6 +42,6 @@ func (r *redirectService) Store(redirect *Redirect) error {
 
 	redirect.Code = shortid.MustGenerate()
 	redirect.CreatedAt = time.Now().UTC().Unix()
-	
+
 	return r.redirectRepo.Store(redirect)
 }
