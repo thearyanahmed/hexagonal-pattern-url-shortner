@@ -17,7 +17,7 @@ type redisRepository struct {
 	client *redis.Client
 }
 
-func newRedisClient(url string) (*redis.Client, error ) {
+func NewRedisClient(url string) (*redis.Client, error ) {
 	opts, err := redis.ParseURL(url)
 
 	if err != nil {
