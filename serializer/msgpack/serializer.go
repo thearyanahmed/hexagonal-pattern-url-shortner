@@ -9,18 +9,19 @@ import (
 type Redirect struct{}
 
 func (r *Redirect) Decode(input []byte) (* shortener.Redirect, error) {
-	redirect := &shortner.Redirect{}
+	redirect := &shortener.Redirect{}
 
 	if err := msgpack.Unmarshal(input,redirect); err != nil {
-		return nil, errors.Wrap("serializer.Redirect.Decode")
+		return nil, errors.Wrap(err,"serializer.Redirect.Decode")
 	}
 
 	return redirect, nil
 }
 
-func (r *Redirect) Encode(input *Redirect) ([]byte, error) {
-	bytes, err := msgpack.Marshal(input) ; err != nil {
-		return nil, errors.Wrap("serializer.Redirect.Endcode")
+func (r *Redirect) Encode(input *shortener.Redirect) ([]byte, error) {
+	bytes, err := msgpack.Marshal(input)
+	if err != nil {
+		return nil, errors.Wrap(err,"serializer.Redirect.Endcode")
 	}
 
 	return bytes, nil

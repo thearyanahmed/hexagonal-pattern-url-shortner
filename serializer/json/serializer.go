@@ -12,15 +12,17 @@ func (r *Redirect) Decode(input []byte) (* shortener.Redirect, error) {
 	redirect := &shortener.Redirect{}
 
 	if err := json.Unmarshal(input,redirect); err != nil {
-		return nil, errors.Wrap("serializer.Redirect.Decode")
+		return nil, errors.Wrap(err,"serializer.Redirect.Decode")
 	}
 
 	return redirect, nil
 }
 
-func (r *Redirect) Encode(input *Redirect) ([]byte, error) {
-	bytes, err := json.Marshal(input) ; err != nil {
-		return nil, errors.Wrap("serializer.Redirect.Endcode")
+func (r *Redirect) Encode(input *shortener.Redirect) ([]byte, error) {
+	bytes, err := json.Marshal(input) ;
+
+	if err != nil {
+		return nil, errors.Wrap(err,"serializer.Redirect.Endcode")
 	}
 
 	return bytes, nil
