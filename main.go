@@ -20,6 +20,10 @@ import (
 
 func main() {
 	repo := chooseRepo()
+
+	fmt.Print("repo")
+	fmt.Println(repo)
+
 	service := shortener.NewRedirectService(repo)
 	handler := h.NewHandler(service)
 
@@ -58,9 +62,14 @@ func httpPort() string {
 }
 
 func chooseRepo() shortener.RedirectRepository {
-	switch os.Getenv("URL_DB") {
+	// repoClient := os.Getenv("REPO_CLIENT")
+	// os.Getenv() not working
+	repoClient := "redis"
+
+	switch repoClient {
 	case "redis":
-		redisURL := os.Getenv("REDIS_URL")
+		// redisURL := os.Getenv("REDIS_URL")
+		redisURL := "redis://localhost:6379"
 		repo, err := rr.NewRedisRepository(redisURL)
 		if err != nil {
 			log.Fatal(err)
