@@ -35,7 +35,7 @@ func NewRedisClient(url string) (*redis.Client, error ) {
 	return client, nil
 }
 
-func newRedisRepository(url string) (shortener.RedirectRepository, error) {
+func NewRedisRepository(url string) (shortener.RedirectRepository, error) {
 	repo := &redisRepository{}
 
 	client, err := NewRedisClient(url)
