@@ -10,7 +10,7 @@
 // 	"go.mongodb.org/mongo-driver/mongo/options"
 // 	"go.mongodb.org/mongo-driver/mongo/readpref"
 
-// 	"github.com/thearyanahmed/url-shortner/shortener"
+// 	"github.com/thearyanahmed/url-shortener/shortener"
 // )
 
 // type mongoRepository struct {
