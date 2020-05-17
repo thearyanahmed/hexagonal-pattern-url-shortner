@@ -11,7 +11,6 @@ import (
 	"github.com/thearyanahmed/url-shortner/serializer/json"
 	"github.com/thearyanahmed/url-shortner/serializer/msgpack"
 	"github.com/thearyanahmed/url-shortner/shortener"
-	"github.com/thearyanahmed/url-shortner/shortner"
 )
 
 type RedirectHandler interface {
@@ -23,8 +22,8 @@ type handler struct {
 	redirectService shortner.RedirectService
 }
 
-func newHandler(handlerService shortner.RedirectSerializer) RedirectHandler {
-	return &handlerService{ redirectService: redirectService}
+func NewHandler(handlerService shortner.RedirectSerializer) RedirectHandler {
+	return &handler{ redirectService: handlerService}
 }
 
 func setupResponse(w http.ResponseWriter, contentType string, body []byte, statusCode int) {

@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/go-chi/chi v4.1.1+incompatible
 	github.com/go-redis/redis v6.15.7+incompatible
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/onsi/ginkgo v1.12.1 // indirect
