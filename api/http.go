@@ -22,8 +22,8 @@ type handler struct {
 	redirectService shortener.RedirectService
 }
 
-func NewHandler(handlerService shortener.RedirectSerializer) RedirectHandler {
-	return &handler{ redirectService: handlerService}
+func NewHandler(redirectService shortener.RedirectService) RedirectHandler {
+	return &handler{ redirectService: redirectService}
 }
 
 func setupResponse(w http.ResponseWriter, contentType string, body []byte, statusCode int) {
@@ -45,7 +45,7 @@ func (h *handler) serializer(contentType string) shortener.RedirectSerializer {
 	return &json.Redirect{}
 }
 
-func (h *handler) Get(w http.ResponseWriter, r http.Request) {
+func (h *handler) Get(w http.ResponseWriter, r *http.Request) {
 	code := chi.URLParam(r,"code")
 
 	redirect, err := h.redirectService.Find(code)
